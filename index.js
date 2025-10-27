@@ -2,6 +2,7 @@
 import express from 'express';
 import path from "path";
 import userRoute from "./routes/users.js"
+import blogRoute from "./routes/blog.js"
 import sequelize from './config/db.js';
 import cookieParser from 'cookie-parser';
 import checkForAuthenticationCookie from './middleware/auth.js';
@@ -37,6 +38,7 @@ app.get('/', (req, res)=>{
     })
 })
 
-app.use("/user", userRoute)
+app.use("/user", userRoute);
+app.use("/blog",blogRoute);
 
 app.listen(PORT , () => console.log(`server started at port : ${PORT}`))

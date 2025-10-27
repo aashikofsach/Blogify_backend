@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('./partials/head') %>
+
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+  <title>Add New Blog Page</title>
+</head>
+<body>
+  <!-- <%- include('./partials/script') %> -->
+
+  <%- include('./partials/nav') %>
+
+  <form action="/blog" method="post">
+
+     <label for="file" class="form-label">File</label>
+    <input type="file" class="form-control mb-3" id="file" name="file" aria-describedby="file">
+
+
+     <label for="title" class="form-label">Title</label>
+    <input type="text" class="form-control mb-3" id="title" name="title" aria-describedby="title">
+
+     <label for="body" class="form-label">Body</label>
+    <textarea type="email" class="form-control mb-3" id="body" name="body" aria-describedby="body"> </textarea>
+
+    <button class="btn btn-primary">Submit</button>
+
+
+  </form>
+
+
+
+  <%= JSON.stringify(user) %>
+   
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+</body>
+</html>
