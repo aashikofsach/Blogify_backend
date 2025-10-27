@@ -6,6 +6,7 @@ import blogRoute from "./routes/blog.js"
 import sequelize from './config/db.js';
 import cookieParser from 'cookie-parser';
 import checkForAuthenticationCookie from './middleware/auth.js';
+import Blog from "./models/blog.js"
 
 
 (async () => {
@@ -23,7 +24,8 @@ const app = express() ;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
-app.use(checkForAuthenticationCookie("token"))
+app.use(checkForAuthenticationCookie("token"));
+app.use(express.static(path.resolve("./public")))
 
 
 const PORT= 8000 ;
@@ -32,9 +34,13 @@ app.set("view engine", "ejs");
 app.set("views", path.resolve('./views'));
 
 
-app.get('/', (req, res)=>{
+app.get('/',async (req, res)=>{
+
+  const allBlogs = await Blog.findAll()
+
     res.render('home', {
-        user : req.user
+        user : req.user,
+        blogs : allBlogs
     })
 })
 

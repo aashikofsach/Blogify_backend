@@ -14,7 +14,7 @@
 
   <%- include('./partials/nav') %>
 
-  <form action="/blog" method="post">
+  <form action="/blog" method="post" enctype="multipart/form-data">
 
      <label for="file" class="form-label">File</label>
     <input type="file" class="form-control mb-3" id="file" name="file" aria-describedby="file">
