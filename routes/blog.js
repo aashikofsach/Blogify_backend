@@ -2,6 +2,7 @@ import {Router} from 'express'
 import multer from 'multer';
 import path from "path"
 import Blog from '../models/blog.js';
+import User from '../models/user.js';
 
 const router = Router() ;
 
@@ -27,8 +28,16 @@ router.get("/add-new", (req, res)=>{
 router.get("/:id", async (req, res)=>
 {
   const blog = await Blog.findOne({
-    where : {id : req.params.id}
+    where : {id : req.params.id},
+    include: [
+        {
+          model: User,
+          as: "author",
+          attributes: ["id", "name", "email", "imageUrl"], // limit what we return
+        },
+      ],
   })
+  console.log(blog , "routes mein blog")
 
   return res.render('blog',{
     user : req.user,

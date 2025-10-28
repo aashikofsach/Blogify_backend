@@ -35,15 +35,15 @@ const Blog = sequelize.define(
   }
 );
 
-// // 🔗 Relationship: Blog belongs to User (creator)
-// Blog.belongsTo(User, {
-//   foreignKey: "createdBy",
-//   as: "author", // alias
-// });
+// 🔗 Relationship: Blog belongs to User (creator)
+Blog.belongsTo(User, {
+  foreignKey: "createdBy",
+  as: "author", // alias
+});
 
-// User.hasMany(Blog, {
-//   foreignKey: "createdBy",
-//   as: "blogs",
-// });
+User.hasMany(Blog, {
+  foreignKey: "createdBy",
+  as: "blogs",
+});
 
 export default Blog;
