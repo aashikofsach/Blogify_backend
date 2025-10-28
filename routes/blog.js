@@ -24,6 +24,18 @@ router.get("/add-new", (req, res)=>{
     })
 })
 
+router.get("/:id", async (req, res)=>
+{
+  const blog = await Blog.findOne({
+    where : {id : req.params.id}
+  })
+
+  return res.render('blog',{
+    user : req.user,
+    blog:blog
+  })
+})
+
 router.post("/", upload.single("file"), async (req, res)=>{
     console.log(req.body);
     console.log(req.file)

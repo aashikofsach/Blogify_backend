@@ -13,13 +13,13 @@
   <!-- <%- include('./partials/script') %> -->
 
   <%- include('./partials/nav') %>
-
+<!-- 
   <%= JSON.stringify(user) %>
-  <%= JSON.stringify(blogs) %>
+  <%= JSON.stringify(blogs) %> -->
 
-  <div>
+  <div class="row">
     <% blogs.forEach(blog => { %>
-<div class="card" style="width: 18rem;">
+<div class="card m-3" style="width: 18rem;">
   <img src="<%=blog.imageUrl  %>" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title"><%= blog.title %></h5>
