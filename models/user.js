@@ -19,7 +19,7 @@ const User = sequelize.define(
     imageUrl: {
       type: DataTypes.STRING,
       allowNull: true,
-      default : "/images/user_profile.avif"
+      defaultValue : "/images/user_profile.avif"
     },
     password: {
       type: DataTypes.STRING,

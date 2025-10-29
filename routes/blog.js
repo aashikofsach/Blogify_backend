@@ -38,6 +38,7 @@ router.get("/:id", async (req, res)=>
       ],
   })
   console.log(blog , "routes mein blog")
+  // console.log(req.user , "routes mein blog agla line ")
 
   return res.render('blog',{
     user : req.user,
