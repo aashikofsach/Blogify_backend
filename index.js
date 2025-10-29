@@ -1,6 +1,8 @@
 
 import express from 'express';
 import path from "path";
+import dotenv from "dotenv";
+
 import userRoute from "./routes/users.js"
 import blogRoute from "./routes/blog.js"
 import sequelize from './config/db.js';
@@ -20,6 +22,8 @@ import Blog from "./models/blog.js"
   }
 })();
 
+dotenv.config();
+
 const app = express() ;
 
 app.use(express.urlencoded({ extended: true }));
@@ -28,7 +32,7 @@ app.use(checkForAuthenticationCookie("token"));
 app.use(express.static(path.resolve("./public")))
 
 
-const PORT= 8000 ;
+const PORT = process.env.PORT || 8000;
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve('./views'));
