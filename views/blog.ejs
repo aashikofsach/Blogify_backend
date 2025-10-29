@@ -1,51 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog</title>
 </head>
+
 <body>
-      <%- include('./partials/nav') %>
+  <%- include('./partials/nav') %>
 
-      <div>
-        <h1><%= blog.title %></h1>
-        <img src="<%= blog.imageUrl %>" alt="image" width="700px">
-        <p><%= blog.body %></p>
+    <div>
+      <h1>
+        <%= blog.title %>
+      </h1>
+      <img src="<%= blog.imageUrl %>" alt="image" width="700px">
+      <p>
+        <%= blog.body %>
+      </p>
+    </div>
+    <div class="container">
+      <img src="<%= blog.author.imageUrl %>" width="100px" alt="">
+
+      <span>Writteb By : <%= blog.author.name %></span>
+
+    </div>
+
+    <div class="container mt-3">
+      <% if (locals.user) { %>
+        <h1>Comments (<%= locals.comments.length %>)</h1>
+        <form action="/blog/comment/<%= locals.blog.id %>" method="post">
+
+          <div class="mb-3">
+
+            <input type="text" name="comment" aria-describedby="comment" placeholder="Enter Your comment here ">
+            <button type="submit" class="btn btn-sm btn-primary">Add</button>
+
+
+
+        </form>
+    </div>
+
+   
+
+
+    <% } %>
+     <div class="container mt-3">
+
+      <% locals.comments.forEach(comment=> { %>
+
+        <div>
+          <img src="<%= comment.author.imageUrl %>" width="100px" alt="">
+          <%= comment.author.name %>
+            <pre> <%= comment.content %></pre>
+
+        </div>
+
+
+        <% }) %>
+
+
+    </div>
+
+
       </div>
-      <div class="container">
-        <img src="<%= blog.author.imageUrl %>" width="100px" alt="">  
-        
-            <span>Writteb By :  <%= blog.author.name %></span>
-      
-      </div>
-
-      <div class="container mt-3">
-        <% if (locals.user) { %>
-           <h1>Comments</h1>
-        <form action="/blog/comment/<%= locals.blog.id %>" method="post" >
-      
-  <div class="mb-3">
-    
-    <input type="text"   name="comment" aria-describedby="comment" placeholder="Enter Your comment here ">
-    <button type="submit" class="btn btn-sm btn-primary">Add</button>
-
- 
-
-</form>
-
-         
-        <% } %>
-       
-
-      </div>
 
 
 
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 
-    
+
 </body>
+
 </html>

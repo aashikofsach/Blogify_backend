@@ -38,12 +38,25 @@ router.get("/:id", async (req, res)=>
         },
       ],
   })
-  console.log(blog , "routes mein blog")
+  const comments = await Comment.findAll({
+    where: { blogId: req.params.id },
+    include: [
+      {
+        model: User,
+        as: "author", // each comment's writer
+        attributes: ["id", "name", "imageUrl"],
+      },
+    ],
+    // order: [["createdAt", "DESC"]],
+  });
+  // console.log(blog , "routes mein blog")
+  console.log(comments.map(c => c.toJSON()), ' line is 53 in file routes /blog')
   // console.log(req.user , "routes mein blog agla line ")
 
   return res.render('blog',{
     user : req.user,
-    blog:blog
+    blog:blog,
+    comments
   })
 })
 
