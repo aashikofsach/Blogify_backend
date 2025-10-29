@@ -16,10 +16,31 @@
       </div>
       <div class="container">
         <img src="<%= blog.author.imageUrl %>" width="100px" alt="">  
-        <p>
-             <%= blog.author.name %>
-        </p>
+        
+            <span>Writteb By :  <%= blog.author.name %></span>
+      
       </div>
+
+      <div class="container mt-3">
+        <% if (locals.user) { %>
+           <h1>Comments</h1>
+        <form action="/blog/comment/<%= locals.blog.id %>" method="post" >
+      
+  <div class="mb-3">
+    
+    <input type="text"   name="comment" aria-describedby="comment" placeholder="Enter Your comment here ">
+    <button type="submit" class="btn btn-sm btn-primary">Add</button>
+
+ 
+
+</form>
+
+         
+        <% } %>
+       
+
+      </div>
+
 
 
 

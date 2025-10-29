@@ -3,6 +3,7 @@ import multer from 'multer';
 import path from "path"
 import Blog from '../models/blog.js';
 import User from '../models/user.js';
+import Comment from '../models/comment.js';
 
 const router = Router() ;
 
@@ -61,7 +62,21 @@ router.post("/", upload.single("file"), async (req, res)=>{
     })
 
    return  res.redirect(`/blog/${blog.id}`)
+});
+
+router.post("/comment/:blogId" ,  async (req, res)=>
+{
+  const comment = await Comment.create({
+    content : req.body.comment ,
+    blogId : req.params.blogId ,
+    userId : req.user.id 
+    
+  })
+
+return res.redirect(`/blog/${req.params.blogId}`)
 })
+
+
 
 
 export default router ;
