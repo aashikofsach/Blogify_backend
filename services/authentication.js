@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-const secret = "radheradhe";
+const secret = process.env.JWT_SECRET;
 
  export function createTokenForUser(user)
 {
